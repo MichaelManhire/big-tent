@@ -1,0 +1,53 @@
+<template>
+    <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+        <div class="px-4 py-5 sm:p-6">
+            <media-object>
+                <template #media>
+                    <avatar :src="post.image" />
+                </template>
+
+                <template #content>
+                    <inertia-link :href="post.show_url" v-if="isLinked">
+                        <h3 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h3>
+                        <p>{{ post.body }}</p>
+                    </inertia-link>
+                    <div v-else>
+                        <h3 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h3>
+                        <p :class="{ 'text-lg': isFeatured }">{{ post.body }}</p>
+                    </div>
+                </template>
+            </media-object>
+        </div>
+        <div class="px-4 py-4 sm:px-6">
+            <post-byline :post="post" />
+        </div>
+    </div>
+</template>
+
+<script>
+    import Avatar from '@/Components/Avatar'
+    import MediaObject from '@/Components/MediaObject'
+    import PostByline from '@/Components/PostByline'
+
+    export default {
+        props: {
+            isFeatured: {
+                type: Boolean,
+                default: false,
+            },
+            isLinked: {
+                type: Boolean,
+                default: true,
+            },
+            post: {
+                type: Object,
+            },
+        },
+
+        components: {
+            Avatar,
+            MediaObject,
+            PostByline,
+        },
+    }
+</script>
