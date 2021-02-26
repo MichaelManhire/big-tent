@@ -18,6 +18,14 @@ class Group extends Model
     }
 
     /**
+     * The users that belong to the group.
+     */
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'group_user');
+    }
+
+    /**
      * Get the posts for the group.
      */
     public function posts()

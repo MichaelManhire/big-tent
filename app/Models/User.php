@@ -68,6 +68,22 @@ class User extends Authenticatable
     }
 
     /**
+     * The groups that the user has created.
+     */
+    public function createdGroups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    /**
+     * The groups that the user belongs to.
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
+    /**
      * Get the user's hearts.
      */
     public function hearts()

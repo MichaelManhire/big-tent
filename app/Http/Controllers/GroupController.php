@@ -16,9 +16,10 @@ class GroupController extends Controller
     public function index()
     {
         return Inertia::render('Groups/Index', [
-            'groups' => Group::all()->map(function ($group) {
+            'groups' => Group::withCount(['members'])->get()->map(function ($group) {
                 return [
                     'id' => $group->id,
+                    'members_count' => $group->members_count,
                     'name' => $group->name,
                 ];
             }),

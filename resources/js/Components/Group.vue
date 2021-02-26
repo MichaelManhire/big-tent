@@ -6,7 +6,7 @@
         <div class="flex-1 flex justify-between bg-white rounded-r-md">
             <div class="flex-1 px-4 py-2 text-sm">
                 <a class="text-gray-900 font-medium hover:text-gray-600" href="#">{{ group.name }}</a>
-                <p class="mt-1 text-gray-500">16 Members</p>
+                <p class="mt-1 text-gray-500">{{ members }}</p>
             </div>
             <div class="flex-shrink-0 self-center pr-2">
                 <button class="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -25,6 +25,12 @@
         props: {
             group: {
                 type: Object,
+            },
+        },
+
+        computed: {
+            members() {
+                return `${this.group.members_count} ${this.group.members_count === 1 ? 'Member' : 'Members'}`
             },
         },
 
