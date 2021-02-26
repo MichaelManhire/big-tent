@@ -1,5 +1,5 @@
 <template>
-    <div class="flex shadow-sm rounded-md border border-gray-200">
+    <article class="flex shadow-sm rounded-md border border-gray-200">
         <div class="flex-shrink-0 flex items-center justify-center w-24 bg-white rounded-l-md">
             <img class="rounded-l-md" src="https://source.unsplash.com/200x200" alt="" width="96" height="96" loading="lazy">
         </div>
@@ -15,7 +15,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </article>
 </template>
 
 <script>
