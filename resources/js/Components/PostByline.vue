@@ -18,12 +18,12 @@
                 <chat-icon />
             </span>
             <span class="inline-block ml-1">{{ post.comments_count }}</span>
-            <span class="sr-only">comments</span>
+            <span class="sr-only">{{ comments }}</span>
             <span class="ml-3">
                 <heart-icon />
             </span>
             <span class="inline-block ml-1">{{ post.hearts_count }}</span>
-            <span class="sr-only">hearts</span>
+            <span class="sr-only">{{ hearts }}</span>
         </span>
     </p>
 </template>
@@ -35,7 +35,21 @@
     import UserIcon from '@/Icons/User'
 
     export default {
-        props: ['post'],
+        props: {
+            post: {
+                type: Object,
+            },
+        },
+
+        computed: {
+            comments() {
+                return `${this.post.comments_count === 1 ? 'comment' : 'comments'}`
+            },
+
+            hearts() {
+                return `${this.post.hearts_count === 1 ? 'heart' : 'hearts'}`
+            },
+        },
 
         components: {
             ChatIcon,
