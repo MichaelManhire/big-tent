@@ -22,9 +22,9 @@
             <section class="lg:col-start-3 lg:col-span-1">
                 <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
                     <h2 class="text-lg font-medium">Members</h2>
-                    <ul class="mt-3 grid grid-cols-6 gap-2" v-if="group.members.length">
-                        <li v-for="member in group.members">
-                            <avatar :src="member.image" :width="48" :height="48" />
+                    <ul class="flex flex-wrap" v-if="group.members.length">
+                        <li class="mt-2 mr-2" v-for="member in group.members">
+                            <avatar :src="member.image" :width="48" :height="48" :name="member.name" />
                         </li>
                     </ul>
                     <p class="mt-3" v-else>This group doesn't have any members in it.</p>
@@ -36,6 +36,7 @@
 
 <script>
     import Avatar from '@/Components/Avatar'
+    import PrimaryButton from '@/Components/PrimaryButton'
 
     export default {
         props: {
@@ -46,6 +47,7 @@
 
         components: {
             Avatar,
+            PrimaryButton,
         },
     }
 </script>
