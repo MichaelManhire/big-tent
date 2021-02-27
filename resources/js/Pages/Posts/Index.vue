@@ -3,18 +3,17 @@
         <section>
             <h1 class="sr-only">Posts</h1>
 
-            <ol v-if="posts.length">
-                <li :class="{ 'mt-6': index > 0 }" v-for="(post, index) in posts" :key="post.id">
-                    <post :post="post" />
-                </li>
-            </ol>
-            <p v-else>There are no posts here!</p>
+            <div v-if="posts.length">
+                <post-list :posts="posts" />
+            </div>
+            <p v-else>There are no posts here.</p>
         </section>
     </div>
 </template>
 
 <script>
     import Post from '@/Components/Post'
+    import PostList from '@/Components/PostList'
 
     export default {
         props: {
@@ -25,6 +24,7 @@
 
         components: {
             Post,
+            PostList,
         },
     }
 </script>
