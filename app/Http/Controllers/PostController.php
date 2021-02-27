@@ -29,6 +29,7 @@ class PostController extends Controller
                     'id' => $post->id,
                     'image' => $post->author->profile_photo_url,
                     'show_url' => URL::route('posts.show', $post),
+                    'title' => $post->title,
                 ];
             }),
         ]);
@@ -82,6 +83,7 @@ class PostController extends Controller
                 'hearts_count' => $post->hearts->count(),
                 'id' => $post->id,
                 'image' => $post->author->profile_photo_url,
+                'title' => $post->title,
             ]
         ]);
     }

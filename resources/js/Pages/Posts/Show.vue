@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <section>
-            <post :post="post" :is-featured="true" :is-linked="false" />
+            <post :post="post" heading="h1" :is-linked="false" />
         </section>
         <section class="mt-6">
-            <h2 class="text-2xl font-bold">Comments</h2>
-            <ol class="mt-3" v-if="post.comments.length">
+            <h2 class="text-lg font-bold">Comments</h2>
+            <ol class="mt-2" v-if="post.comments.length">
                 <li :class="{ 'mt-6': index > 0 }" v-for="(comment, index) in post.comments" :key="comment.id">
-                    <post :post="comment" :is-linked="false" />
+                    <post :post="comment" :heading="h3" :is-linked="false" />
                 </li>
             </ol>
         </section>

@@ -7,33 +7,13 @@
                 </template>
 
                 <template #content>
-                    <div v-if="isFeatured">
-                        <inertia-link :href="post.show_url" v-if="isLinked">
-                            <!-- Featured, Linked -->
-                            <h1 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h1>
-                            <h1 class="sr-only" v-else>Post by {{ post.author }}</h1>
-                            <p class="text-lg">{{ post.body }}</p>
-                        </inertia-link>
-                        <div v-else>
-                            <!-- Featured, Unlinked (Single Post) -->
-                            <h1 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h1>
-                            <h1 class="sr-only" v-else>Post by {{ post.author }}</h1>
-                            <p class="text-lg">{{ post.body }}</p>
-                        </div>
-                    </div>
+                    <inertia-link v-if="isLinked" :href="post.show_url">
+                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.title }}</component>
+                        <p>{{ post.body }}</p>
+                    </inertia-link>
                     <div v-else>
-                        <inertia-link :href="post.show_url" v-if="isLinked">
-                            <!-- Normal, Linked (Post Listing) -->
-                            <h2 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h2>
-                            <h2 class="sr-only" v-else>Post by {{ post.author }}</h2>
-                            <p>{{ post.body }}</p>
-                        </inertia-link>
-                        <div v-else>
-                            <!-- Normal, Unlinked (Comment) -->
-                            <h3 class="mb-1 text-lg font-bold" v-if="post.group">{{ post.group }}</h3>
-                            <h3 class="sr-only" v-else>Post by {{ post.author }}</h3>
-                            <p :class="{ 'text-lg': isFeatured }">{{ post.body }}</p>
-                        </div>
+                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.title }}</component>
+                        <p>{{ post.body }}</p>
                     </div>
                 </template>
             </media-object>
@@ -51,9 +31,9 @@
 
     export default {
         props: {
-            isFeatured: {
-                type: Boolean,
-                default: false,
+            heading: {
+                type: String,
+                default: 'h2',
             },
             isLinked: {
                 type: Boolean,

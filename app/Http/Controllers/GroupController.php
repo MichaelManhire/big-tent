@@ -80,6 +80,7 @@ class GroupController extends Controller
                         'id' => $post->id,
                         'image' => $post->author->profile_photo_url,
                         'show_url' => URL::route('posts.show', $post),
+                        'title' => $post->title,
                     ];
                 }),
             ]
