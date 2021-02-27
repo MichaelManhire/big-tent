@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class GroupController extends Controller
@@ -21,6 +23,7 @@ class GroupController extends Controller
                     'id' => $group->id,
                     'members_count' => $group->members_count,
                     'name' => $group->name,
+                    'show_url' => URL::route('groups.show', $group),
                 ];
             }),
         ]);
@@ -55,7 +58,29 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        return Inertia::render('Groups/Show', [
+            'group' => [
+                'created_at' => Carbon::parse($group->created_at)->diffForHumans(),
+                'creator' => $group->creator->name,
+                'members' => $group->members->shuffle()->map(function ($member) {
+                    return [
+                        'id' => $member->id,
+                        'image' => $member->profile_photo_url,
+                        'name' => $member->name,
+                    ];
+                }),
+                'name' => $group->name,
+                'posts' => $group->posts->map(function ($post) {
+                    return [
+                        'author' => $post->author->name,
+                        'body' => $post->body,
+                        'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
+                        'id' => $post->id,
+                        'image' => $post->author->profile_photo_url,
+                    ];
+                }),
+            ]
+        ]);
     }
 
     /**

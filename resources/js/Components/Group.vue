@@ -5,7 +5,9 @@
         </div>
         <div class="flex-1 flex justify-between bg-white rounded-r-md">
             <div class="flex-1 px-4 py-2 text-sm">
-                <a class="text-gray-900 font-medium hover:text-gray-600" href="#">{{ group.name }}</a>
+                <inertia-link class="text-gray-900 font-medium hover:text-gray-600" :href="group.show_url">
+                    {{ group.name }}
+                </inertia-link>
                 <p class="mt-1 text-gray-500">{{ group.members_count }} {{ members }}</p>
             </div>
             <div class="flex-shrink-0 self-center pr-2">

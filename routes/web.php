@@ -31,5 +31,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
+Route::get('/groups/{group}', [GroupController::class, 'show'])->name('groups.show');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
