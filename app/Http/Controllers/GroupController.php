@@ -70,13 +70,16 @@ class GroupController extends Controller
                     ];
                 }),
                 'name' => $group->name,
-                'posts' => $group->posts->map(function ($post) {
+                'posts' => $group->posts()->withCount(['comments', 'hearts'])->get()->map(function ($post) {
                     return [
                         'author' => $post->author->name,
                         'body' => $post->body,
+                        'comments_count' => $post->comments_count,
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
+                        'hearts_count' => $post->hearts_count,
                         'id' => $post->id,
                         'image' => $post->author->profile_photo_url,
+                        'show_url' => URL::route('posts.show', $post),
                     ];
                 }),
             ]
