@@ -3,7 +3,7 @@
         <div class="px-4 py-5 sm:p-6">
             <media-object>
                 <template #media>
-                    <avatar :src="post.image" />
+                    <avatar :src="post.image" :name="post.author" />
                 </template>
 
                 <template #content>
