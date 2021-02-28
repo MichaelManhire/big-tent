@@ -10,11 +10,11 @@ class Heart extends Model
     use HasFactory;
 
     /**
-     * Get the post that owns the heart.
+     * Get the parent heartable model (post or comment).
      */
-    public function post()
+    public function heartable()
     {
-        return $this->belongsTo(Post::class);
+        return $this->morphTo();
     }
 
     /**

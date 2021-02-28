@@ -14,6 +14,6 @@ class HeartSeeder extends Seeder
      */
     public function run()
     {
-        Heart::factory()->count(200)->create();
+        Heart::factory()->count(400)->create();
     }
 }

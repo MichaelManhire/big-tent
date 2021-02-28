@@ -30,7 +30,7 @@ class Post extends Model
      */
     public function hearts()
     {
-        return $this->hasMany(Heart::class);
+        return $this->morphMany(Heart::class, 'heartable');
     }
 
     /**

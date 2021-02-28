@@ -15,8 +15,9 @@ class CreateHeartsTable extends Migration
     {
         Schema::create('hearts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('heartable_id');
+            $table->string('heartable_type');
             $table->timestamps();
         });
     }

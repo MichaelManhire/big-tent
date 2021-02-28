@@ -18,6 +18,14 @@ class Comment extends Model
     }
 
     /**
+     * Get the hearts for the comment.
+     */
+    public function hearts()
+    {
+        return $this->morphMany(Heart::class, 'heartable');
+    }
+
+    /**
      * Get the post that owns the comment.
      */
     public function post()
