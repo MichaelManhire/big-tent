@@ -19,15 +19,15 @@
             </media-object>
         </div>
         <div class="px-4 py-4 sm:px-6">
-            <post-byline :post="post" />
+            <byline :post="post" />
         </div>
     </article>
 </template>
 
 <script>
     import Avatar from '@/Components/Avatar'
+    import Byline from '@/Components/Byline'
     import MediaObject from '@/Components/MediaObject'
-    import PostByline from '@/Components/PostByline'
 
     export default {
         props: {
@@ -46,8 +46,8 @@
 
         components: {
             Avatar,
+            Byline,
             MediaObject,
-            PostByline,
         },
     }
 </script>

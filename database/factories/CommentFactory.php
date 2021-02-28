@@ -23,10 +23,29 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $commentableType = $this->getCommentableType();
+        $commentableId = $this->getCommentableId($commentableType);
+
         return [
-            'post_id' => Post::all()->random()->id,
             'user_id' => User::all()->random()->id,
+            'commentable_id' => Post::all()->random()->id,
+            'commentable_type' => 'App\Models\Post',
             'body' => $this->faker->paragraph(),
         ];
+    }
+
+    /**
+     * Indicate that the comment is a reply.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function reply()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'commentable_id' => Comment::all()->random()->id,
+                'commentable_type' => 'App\Models\Comment',
+            ];
+        });
     }
 }

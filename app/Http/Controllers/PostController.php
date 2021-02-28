@@ -72,10 +72,22 @@ class PostController extends Controller
                     return [
                         'author' => $comment->author->name,
                         'body' => $comment->body,
+                        'comments_count' => $comment->replies->count(),
                         'created_at' => Carbon::parse($comment->created_at)->diffForHumans(),
                         'hearts_count' => $comment->hearts_count,
                         'id' => $comment->id,
                         'image' => $comment->author->profile_photo_url,
+                        'replies' => $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
+                            return [
+                                'author' => $reply->author->name,
+                                'body' => $reply->body,
+                                'comments_count' => $reply->replies->count(),
+                                'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),
+                                'hearts_count' => $reply->hearts_count,
+                                'id' => $reply->id,
+                                'image' => $reply->author->profile_photo_url,
+                            ];
+                        }),
                     ];
                 }),
                 'comments_count' => $post->comments->count(),

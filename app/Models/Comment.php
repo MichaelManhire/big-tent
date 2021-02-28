@@ -18,7 +18,15 @@ class Comment extends Model
     }
 
     /**
-     * Get the hearts for the comment.
+     * Get the parent commentable model (post or comment).
+     */
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get all of the comment's hearts.
      */
     public function hearts()
     {
@@ -26,10 +34,10 @@ class Comment extends Model
     }
 
     /**
-     * Get the post that owns the comment.
+     * Get all of the comment's replies.
      */
-    public function post()
+    public function replies()
     {
-        return $this->belongsTo(Post::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
