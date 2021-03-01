@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <ol class="ml-6">
+        <ol class="nested-comments ml-auto">
             <li class="mt-6" v-for="(reply, index) in comment.replies" :key="reply.id">
                 <comment :comment="reply" />
             </li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -77,17 +78,7 @@ class PostController extends Controller
                         'hearts_count' => $comment->hearts_count,
                         'id' => $comment->id,
                         'image' => $comment->author->profile_photo_url,
-                        'replies' => $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
-                            return [
-                                'author' => $reply->author->name,
-                                'body' => $reply->body,
-                                'comments_count' => $reply->replies->count(),
-                                'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),
-                                'hearts_count' => $reply->hearts_count,
-                                'id' => $reply->id,
-                                'image' => $reply->author->profile_photo_url,
-                            ];
-                        }),
+                        'replies' => $this->getReplies($comment),
                     ];
                 }),
                 'comments_count' => $post->comments->count(),
@@ -133,5 +124,27 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    /**
+     * Get the replies to the comment.
+     *
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getReplies(Comment $comment)
+    {
+        return $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
+            return [
+                'author' => $reply->author->name,
+                'body' => $reply->body,
+                'comments_count' => $reply->replies->count(),
+                'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),
+                'hearts_count' => $reply->hearts_count,
+                'id' => $reply->id,
+                'image' => $reply->author->profile_photo_url,
+                'replies' => $this->getReplies($reply),
+            ];
+        });
     }
 }
