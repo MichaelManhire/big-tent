@@ -18,7 +18,7 @@ class GroupController extends Controller
     public function index()
     {
         return Inertia::render('Groups/Index', [
-            'groups' => Group::withCount(['members'])->get()->map(function ($group) {
+            'groups' => Group::inRandomOrder()->withCount(['members'])->get()->map(function ($group) {
                 return [
                     'id' => $group->id,
                     'image' => $group->profile_photo_url,
