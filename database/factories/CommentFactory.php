@@ -23,9 +23,6 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $commentableType = $this->getCommentableType();
-        $commentableId = $this->getCommentableId($commentableType);
-
         return [
             'user_id' => User::all()->random()->id,
             'commentable_id' => Post::all()->random()->id,
