@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Jetstream\HasProfilePhoto;
 
 class Group extends Model
 {
     use HasFactory;
+    use HasProfilePhoto;
 
     /**
      * Get the user that created the group.

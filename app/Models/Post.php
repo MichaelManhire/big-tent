@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Jetstream\HasProfilePhoto;
 
 class Post extends Model
 {
     use HasFactory;
+    use HasProfilePhoto;
 
     /**
      * Get the user that authored the post.
@@ -23,6 +25,16 @@ class Post extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     *
+     * @return string
+     */
+    protected function defaultProfilePhotoUrl()
+    {
+        return $this->author->profile_photo_url;
     }
 
     /**

@@ -3,16 +3,21 @@
         <div class="px-4 py-5 sm:p-6">
             <media-object>
                 <template #media>
-                    <avatar :src="post.image" :name="post.author" />
+                    <inertia-link v-if="isLinked" :href="post.show_url">
+                        <img class="rounded-md" :src="post.image" alt="" width="56" height="56" loading="lazy">
+                    </inertia-link>
+                    <div v-else>
+                        <img class="rounded-md" :src="post.image" alt="" width="56" height="56" loading="lazy">
+                    </div>
                 </template>
 
                 <template #content>
                     <inertia-link v-if="isLinked" :href="post.show_url">
-                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.title }}</component>
+                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.name }}</component>
                         <p>{{ post.body }}</p>
                     </inertia-link>
                     <div v-else>
-                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.title }}</component>
+                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.name }}</component>
                         <p>{{ post.body }}</p>
                     </div>
                 </template>

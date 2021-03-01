@@ -21,6 +21,7 @@ class GroupController extends Controller
             'groups' => Group::withCount(['members'])->get()->map(function ($group) {
                 return [
                     'id' => $group->id,
+                    'image' => $group->profile_photo_url,
                     'members_count' => $group->members_count,
                     'name' => $group->name,
                     'show_url' => URL::route('groups.show', $group),
@@ -60,8 +61,7 @@ class GroupController extends Controller
     {
         return Inertia::render('Groups/Show', [
             'group' => [
-                'created_at' => Carbon::parse($group->created_at)->diffForHumans(),
-                'creator' => $group->creator->name,
+                'image' => $group->profile_photo_url,
                 'members' => $group->members->shuffle()->map(function ($member) {
                     return [
                         'id' => $member->id,
@@ -78,9 +78,9 @@ class GroupController extends Controller
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                         'hearts_count' => $post->hearts_count,
                         'id' => $post->id,
-                        'image' => $post->author->profile_photo_url,
+                        'image' => $post->profile_photo_url,
+                        'name' => $post->name,
                         'show_url' => URL::route('posts.show', $post),
-                        'title' => $post->title,
                     ];
                 }),
             ]

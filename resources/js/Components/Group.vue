@@ -1,7 +1,7 @@
 <template>
     <article class="flex shadow-sm rounded-md border border-gray-200">
         <div class="flex-shrink-0 flex items-center justify-center w-24 bg-white rounded-l-md">
-            <img class="rounded-l-md" src="https://source.unsplash.com/200x200" alt="" width="96" height="96" loading="lazy">
+            <img class="rounded-l-md" :src="group.image" alt="" width="96" height="96" loading="lazy">
         </div>
         <div class="flex-1 flex justify-between bg-white rounded-r-md">
             <div class="flex-1 px-4 py-2 text-sm">
@@ -32,7 +32,7 @@
 
         computed: {
             members() {
-                return `${this.group.members_count === 1 ? 'Member' : 'Members'}`
+                return `${this.group.members_count === 1 ? 'member' : 'members'}`
             },
         },
 

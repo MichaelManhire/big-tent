@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
+            $table->text('profile_photo_path')->nullable();
             $table->timestamps();
         });
     }

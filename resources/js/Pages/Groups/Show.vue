@@ -3,16 +3,14 @@
         <section class="md:flex md:items-center md:justify-between md:space-x-5">
             <div class="flex items-center space-x-5">
                 <div class="flex-shrink-0">
-                    <img class="h-16 w-16 rounded-md" src="https://source.unsplash.com/200x200" alt="" width="64" height="64" loading="lazy">
+                    <img class="rounded-md" :src="group.image" alt="" width="64" height="64" loading="lazy">
                 </div>
                 <div>
                     <h1 class="text-2xl font-bold">{{ group.name }}</h1>
                 </div>
             </div>
             <div class="mt-6 flex justify-stretch sm:justify-end md:mt-0">
-                <primary-button>
-                    Join Group
-                </primary-button>
+                <primary-button>Join Group</primary-button>
             </div>
         </section>
 

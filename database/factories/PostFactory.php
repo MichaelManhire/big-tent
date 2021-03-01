@@ -26,7 +26,7 @@ class PostFactory extends Factory
         return [
             'group_id' => $this->faker->boolean() ? Group::all()->random()->id : null,
             'user_id' => User::all()->random()->id,
-            'title' => $this->faker->sentence(),
+            'name' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
         ];
     }
