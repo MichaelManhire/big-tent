@@ -29,6 +29,8 @@ class PostController extends Controller
                     'hearts_count' => $post->hearts_count,
                     'id' => $post->id,
                     'image' => $post->profile_photo_url,
+                    'group' => optional($post->group)->name,
+                    'group_show_url' => $post->group ? URL::route('groups.show', $post->group) : null,
                     'name' => $post->name,
                     'show_url' => URL::route('posts.show', $post),
                 ];
@@ -84,6 +86,7 @@ class PostController extends Controller
                 'comments_count' => $post->comments->count(),
                 'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                 'group' => optional($post->group)->name,
+                'group_show_url' => $post->group ? URL::route('groups.show', $post->group) : null,
                 'hearts_count' => $post->hearts->count(),
                 'id' => $post->id,
                 'image' => $post->profile_photo_url,
