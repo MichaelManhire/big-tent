@@ -13,7 +13,7 @@
             <div class="flex-shrink-0 self-center pr-2">
                 <button class="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="sr-only">Join Group</span>
-                    <check-icon />
+                    <plus-icon />
                 </button>
             </div>
         </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import CheckIcon from '@/Icons/Check'
+    import PlusIcon from '@/Icons/Plus'
 
     export default {
         props: {
@@ -37,7 +37,7 @@
         },
 
         components: {
-            CheckIcon,
+            PlusIcon,
         },
     }
 </script>
