@@ -3,7 +3,7 @@
         <section>
             <h1 class="sr-only">Posts</h1>
 
-            <div v-if="posts.length">
+            <div v-if="posts.data.length">
                 <post-list :posts="posts" />
             </div>
             <p v-else>There are no posts here.</p>
@@ -18,7 +18,7 @@
     export default {
         props: {
             posts: {
-                type: Array,
+                type: Object,
             },
         },
 
