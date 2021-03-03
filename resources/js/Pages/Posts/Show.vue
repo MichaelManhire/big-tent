@@ -5,11 +5,15 @@
         </section>
         <section class="mt-6">
             <h2 class="text-lg font-bold">Comments</h2>
-            <ol v-if="post.comments.length" class="mt-2">
-                <li :class="{ 'mt-6': index > 0 }" v-for="(comment, index) in post.comments" :key="comment.id">
-                    <comment :comment="comment" />
-                </li>
-            </ol>
+            <div v-if="post.comments.data.length" class="mt-2">
+                <ol>
+                    <li :class="{ 'mt-6': index > 0 }" v-for="(comment, index) in post.comments.data" :key="comment.id">
+                        <comment :comment="comment" />
+                    </li>
+                </ol>
+
+                <pagination :links="post.comments.links" :nextPageUrl="post.comments.next_page_url" :prevPageUrl="post.comments.prev_page_url" />
+            </div>
             <p v-else class="mt-2">This post doesn't have any comments on it.</p>
         </section>
     </div>
@@ -17,6 +21,7 @@
 
 <script>
     import Comment from '@/Components/Comment'
+    import Pagination from '@/Components/Pagination'
     import Post from '@/Components/Post'
 
     export default {
@@ -28,6 +33,7 @@
 
         components: {
             Comment,
+            Pagination,
             Post,
         },
     }
