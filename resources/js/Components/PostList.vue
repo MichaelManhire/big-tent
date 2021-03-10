@@ -5,7 +5,7 @@
         </li>
     </ol>
 
-    <pagination :links="posts.links" :nextPageUrl="posts.next_page_url" :prevPageUrl="posts.prev_page_url" />
+    <pagination :pagination="posts" />
 </template>
 
 <script>

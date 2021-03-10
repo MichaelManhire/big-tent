@@ -12,7 +12,7 @@
                     </li>
                 </ol>
 
-                <pagination :links="post.comments.links" :nextPageUrl="post.comments.next_page_url" :prevPageUrl="post.comments.prev_page_url" />
+                <pagination :pagination="post.comments" />
             </div>
             <p v-else class="mt-2">This post doesn't have any comments on it.</p>
         </section>
