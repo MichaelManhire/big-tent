@@ -16,14 +16,17 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/Index', [
-            'users' => User::inRandomOrder()->get()->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'image' => $user->profile_photo_url,
-                    'name' => $user->name,
-                    // 'show_url' => URL::route('users.show', $user),
-                ];
-            }),
+            'users' => User::inRandomOrder()
+                ->get()
+                ->map(function ($user) {
+                    return [
+                        'id' => $user->id,
+                        'image' => $user->profile_photo_url,
+                        'name' => $user->name,
+                        // 'show_url' => URL::route('users.show', $user),
+                    ];
+                })
+                ->simplePaginate(),
         ]);
     }
 
