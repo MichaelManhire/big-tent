@@ -5,7 +5,7 @@
         </section>
         <section class="mt-6">
             <h2 class="text-lg font-bold">Comments</h2>
-            <div v-if="post.comments.data" class="mt-2">
+            <div v-if="post.comments.from" class="mt-2">
                 <ol>
                     <li :class="{ 'mt-6': index > 0 }" v-for="(comment, index) in post.comments.data" :key="comment.id">
                         <comment :comment="comment" />
