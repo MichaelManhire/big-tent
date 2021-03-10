@@ -1,26 +1,11 @@
 <template>
-    <nav class="mt-6 border-t border-gray-200 px-4 flex items-center justify-between sm:px-0" aria-label="Pagination">
-        <div v-if="pagination.prev_page_url" class="-mt-px w-0 flex-1 flex">
-            <inertia-link :href="pagination.prev_page_url" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
+    <nav class="py-6 flex items-center justify-between" aria-label="Pagination">
+        <div class="flex-1 flex justify-end">
+            <inertia-link v-if="pagination.prev_page_url" :href="pagination.prev_page_url" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Previous
             </inertia-link>
-        </div>
-        <div class="hidden md:-mt-px md:flex">
-            <template v-for="(link, key) in pagination.links">
-                <inertia-link v-if="! isNaN(link.label)" :key="key" :href="link.url" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium" :class="{ 'border-blue-500 text-blue-600 hover:border-blue-500 hover:text-blue-600 cursor-default': link.active }">
-                    {{ link.label }}
-                </inertia-link>
-            </template>
-        </div>
-        <div v-if="pagination.next_page_url" class="-mt-px w-0 flex-1 flex justify-end">
-            <inertia-link :href="pagination.next_page_url" class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+            <inertia-link v-if="pagination.next_page_url" :href="pagination.next_page_url" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Next
-                <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
             </inertia-link>
         </div>
     </nav>

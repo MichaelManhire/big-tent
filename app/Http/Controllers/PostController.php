@@ -38,7 +38,7 @@ class PostController extends Controller
                         'show_url' => URL::route('posts.show', $post),
                     ];
                 })
-                ->paginate(),
+                ->simplePaginate(),
         ]);
     }
 
@@ -90,7 +90,7 @@ class PostController extends Controller
                             'replies' => $this->getReplies($comment),
                         ];
                     })
-                    ->paginate(),
+                    ->simplePaginate(),
                 'comments_count' => $post->comments->count(),
                 'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                 'group' => optional($post->group)->name,
