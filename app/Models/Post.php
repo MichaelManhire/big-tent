@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Jetstream\HasProfilePhoto;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model
 {
     use HasFactory;
     use HasProfilePhoto;
+    use HasSlug;
 
     /**
      * Get the user that authored the post.
@@ -38,11 +41,23 @@ class Post extends Model
     }
 
     /**
-     * Get all of the post's hearts.
+     * Get the route key for the model.
+     *
+     * @return string
      */
-    public function hearts()
+    public function getRouteKeyName()
     {
-        return $this->morphMany(Heart::class, 'heartable');
+        return 'slug';
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     /**
@@ -51,5 +66,13 @@ class Post extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    /**
+     * Get all of the post's hearts.
+     */
+    public function hearts()
+    {
+        return $this->morphMany(Heart::class, 'heartable');
     }
 }
