@@ -3,11 +3,15 @@
         <section>
             <h1 class="sr-only">Groups</h1>
 
-            <ul class="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3" v-if="groups.length">
-                <li class="col-span-1" v-for="(group, index) in groups" :key="group.id">
-                    <group :group="group" />
-                </li>
-            </ul>
+            <div v-if="groups.data">
+                <ul class="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <li class="col-span-1" v-for="(group, index) in groups.data" :key="group.id">
+                        <group :group="group" />
+                    </li>
+                </ul>
+
+                <pagination :pagination="groups" />
+            </div>
             <p v-else>There are no groups here.</p>
         </section>
     </div>
@@ -15,16 +19,18 @@
 
 <script>
     import Group from '@/Components/Group'
+    import Pagination from '@/Components/Pagination'
 
     export default {
         props: {
             groups: {
-                type: Array,
+                type: Object,
             },
         },
 
         components: {
             Group,
+            Pagination,
         },
     }
 </script>

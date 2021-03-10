@@ -18,15 +18,19 @@ class GroupController extends Controller
     public function index()
     {
         return Inertia::render('Groups/Index', [
-            'groups' => Group::inRandomOrder()->withCount(['members'])->get()->map(function ($group) {
-                return [
-                    'id' => $group->id,
-                    'image' => $group->profile_photo_url,
-                    'members_count' => $group->members_count,
-                    'name' => $group->name,
-                    'show_url' => URL::route('groups.show', $group),
-                ];
-            }),
+            'groups' => Group::inRandomOrder()
+                ->withCount(['members'])
+                ->get()
+                ->map(function ($group) {
+                    return [
+                        'id' => $group->id,
+                        'image' => $group->profile_photo_url,
+                        'members_count' => $group->members_count,
+                        'name' => $group->name,
+                        'show_url' => URL::route('groups.show', $group),
+                    ];
+                })
+                ->simplePaginate(),
         ]);
     }
 
