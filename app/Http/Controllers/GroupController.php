@@ -66,27 +66,34 @@ class GroupController extends Controller
         return Inertia::render('Groups/Show', [
             'group' => [
                 'image' => $group->profile_photo_url,
-                'members' => $group->members->shuffle()->map(function ($member) {
-                    return [
-                        'id' => $member->id,
-                        'image' => $member->profile_photo_url,
-                        'name' => $member->name,
-                    ];
-                }),
+                'members' => $group->members
+                    ->shuffle()
+                    ->take(48)
+                    ->map(function ($member) {
+                        return [
+                            'id' => $member->id,
+                            'image' => $member->profile_photo_url,
+                            'name' => $member->name,
+                        ];
+                    }),
                 'name' => $group->name,
-                'posts' => $group->posts()->withCount(['comments', 'hearts'])->get()->map(function ($post) {
-                    return [
-                        'author' => $post->author->name,
-                        'body' => $post->body,
-                        'comments_count' => $post->comments_count,
-                        'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
-                        'hearts_count' => $post->hearts_count,
-                        'id' => $post->id,
-                        'image' => $post->profile_photo_url,
-                        'name' => $post->name,
-                        'show_url' => URL::route('posts.show', $post),
-                    ];
-                }),
+                'posts' => $group->posts()
+                    ->withCount(['comments', 'hearts'])
+                    ->get()
+                    ->map(function ($post) {
+                        return [
+                            'author' => $post->author->name,
+                            'body' => $post->body,
+                            'comments_count' => $post->comments_count,
+                            'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
+                            'hearts_count' => $post->hearts_count,
+                            'id' => $post->id,
+                            'image' => $post->profile_photo_url,
+                            'name' => $post->name,
+                            'show_url' => URL::route('posts.show', $post),
+                        ];
+                    })
+                    ->simplePaginate(),
             ]
         ]);
     }

@@ -17,7 +17,7 @@
         <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-flow-col-dense lg:grid-cols-3">
             <section class="lg:col-start-1 lg:col-span-2">
                 <h2 class="sr-only">Posts</h2>
-                <div v-if="group.posts.length">
+                <div v-if="group.posts.data">
                     <post-list :posts="group.posts" heading="h3" />
                 </div>
                 <p v-else>This group doesn't have any posts in it.</p>
