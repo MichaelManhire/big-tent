@@ -1,8 +1,8 @@
 <template>
-    <a href="#">
+    <inertia-link :href="href">
         <img class="rounded-md" :src="src" alt="" :width="width" :height="height" loading="lazy">
         <span class="sr-only">{{ name }}</span>
-    </a>
+    </inertia-link>
 </template>
 
 <script>
@@ -11,6 +11,9 @@
             height: {
                 type: Number,
                 default: 56,
+            },
+            href: {
+                type: String,
             },
             name: {
                 type: String,

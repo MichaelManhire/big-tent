@@ -74,6 +74,7 @@ class GroupController extends Controller
                             'id' => $member->id,
                             'image' => $member->profile_photo_url,
                             'name' => $member->name,
+                            'show_url' => URL::route('users.show', $member),
                         ];
                     }),
                 'name' => $group->name,
@@ -83,6 +84,7 @@ class GroupController extends Controller
                     ->map(function ($post) {
                         return [
                             'author' => $post->author->name,
+                            'author_show_url' => URL::route('users.show', $post->author),
                             'body' => $post->body,
                             'comments_count' => $post->comments_count,
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
@@ -104,8 +106,7 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
-    {
+    public function edit(Group $group) {
         //
     }
 

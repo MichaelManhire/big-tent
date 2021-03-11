@@ -5,7 +5,7 @@
 
             <div v-if="users.from">
                 <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <li class="col-span-1" v-for="(user, index) in users.data" :key="user.id">
+                    <li class="col-span-1" v-for="user in users.data" :key="user.id">
                         <user :user="user" />
                     </li>
                 </ul>

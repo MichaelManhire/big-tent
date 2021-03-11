@@ -36,3 +36,4 @@ Route::get('/groups/{group}', [GroupController::class, 'show'])->name('groups.sh
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/members', [UserController::class, 'index'])->name('users.index');
+Route::get('/members/{user}', [UserController::class, 'show'])->name('users.show');

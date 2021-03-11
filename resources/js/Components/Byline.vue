@@ -3,12 +3,18 @@
         <span class="flex">
             <!-- User -->
             <span class="sr-only">Posted by</span>
-            <a class="flex" href="#">
+            <inertia-link v-if="post.author_show_url" :href="post.author_show_url" class="flex">
                 <span>
                     <user-icon />
                 </span>
                 <span class="inline-block ml-1">{{ post.author }}</span>
-            </a>
+            </inertia-link>
+            <div v-else class="flex">
+                <span>
+                    <user-icon />
+                </span>
+                <span class="inline-block ml-1">{{ post.author }}</span>
+            </div>
 
             <!-- Time -->
             <span class="ml-3">
@@ -34,12 +40,12 @@
     </p>
     <p v-if="post.group" class="mt-3 text-sm text-gray-500">
         <span class="sr-only">Posted in</span>
-        <a class="flex" :href="post.group_show_url">
+        <inertia-link :href="post.group_show_url" class="flex">
             <span>
                 <template-icon />
             </span>
             <span class="inline-block ml-1">{{ post.group }}</span>
-        </a>
+        </inertia-link>
     </p>
 </template>
 

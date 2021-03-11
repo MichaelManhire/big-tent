@@ -27,8 +27,8 @@
                 <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
                     <h2 class="text-lg font-medium">Members</h2>
                     <ul class="flex flex-wrap" v-if="group.members.length">
-                        <li class="mt-2 mr-2" v-for="member in group.members">
-                            <avatar :src="member.image" :width="48" :height="48" :name="member.name" />
+                        <li class="mt-2 mr-2" v-for="member in group.members" :key="member.id">
+                            <avatar :src="member.image" :width="48" :height="48" :name="member.name" :href="member.show_url" />
                         </li>
                     </ul>
                     <p class="mt-3" v-else>This group doesn't have any members in it.</p>

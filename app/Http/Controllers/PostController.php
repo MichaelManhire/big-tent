@@ -25,6 +25,7 @@ class PostController extends Controller
                 ->map(function ($post) {
                     return [
                         'author' => $post->author->name,
+                        'author_show_url' => URL::route('users.show', $post->author),
                         'body' => $post->body,
                         'comments_count' => $post->comments_count,
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
@@ -74,6 +75,7 @@ class PostController extends Controller
         return Inertia::render('Posts/Show', [
             'post' => [
                 'author' => $post->author->name,
+                'author_show_url' => URL::route('users.show', $post->author),
                 'body' => $post->body,
                 'comments' => $post->comments()
                     ->withCount(['hearts'])
@@ -81,6 +83,7 @@ class PostController extends Controller
                     ->map(function ($comment) {
                         return [
                             'author' => $comment->author->name,
+                            'author_show_url' => URL::route('users.show', $comment->author),
                             'body' => $comment->body,
                             'comments_count' => $comment->replies->count(),
                             'created_at' => Carbon::parse($comment->created_at)->diffForHumans(),
@@ -148,6 +151,7 @@ class PostController extends Controller
         return $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
             return [
                 'author' => $reply->author->name,
+                'author_show_url' => URL::route('users.show', $reply->author),
                 'body' => $reply->body,
                 'comments_count' => $reply->replies->count(),
                 'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),

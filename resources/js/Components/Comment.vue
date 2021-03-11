@@ -4,7 +4,7 @@
             <div class="px-4 py-5 sm:p-6">
                 <media-object>
                     <template #media>
-                        <avatar :src="comment.image" :name="comment.author" />
+                        <avatar :src="comment.image" :name="comment.author" :href="comment.author_show_url" />
                     </template>
                     <template #content>
                         <p>{{ comment.body }}</p>
@@ -17,7 +17,7 @@
         </div>
 
         <ol class="nested-comments ml-auto">
-            <li class="mt-6" v-for="(reply, index) in comment.replies" :key="reply.id">
+            <li class="mt-6" v-for="reply in comment.replies" :key="reply.id">
                 <comment :comment="reply" />
             </li>
         </ol>
