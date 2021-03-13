@@ -20,9 +20,9 @@
 </template>
 
 <script>
-    import Comment from '@/Components/Comment'
-    import Pagination from '@/Components/Pagination'
-    import Post from '@/Components/Post'
+    import Comment from '@/Shared/Comment'
+    import Pagination from '@/Shared/Pagination'
+    import Post from '@/Shared/Post'
 
     export default {
         props: {

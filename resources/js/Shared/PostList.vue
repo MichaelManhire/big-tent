@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    import Pagination from '@/Components/Pagination'
-    import Post from '@/Components/Post'
+    import Pagination from '@/Shared/Pagination'
+    import Post from '@/Shared/Post'
 
     export default {
         props: {

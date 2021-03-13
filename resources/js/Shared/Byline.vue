@@ -46,11 +46,11 @@
 </template>
 
 <script>
-    import ChatIcon from '@/Icons/Chat'
-    import ClockIcon from '@/Icons/Clock'
-    import HeartIcon from '@/Icons/Heart'
-    import TemplateIcon from '@/Icons/Template'
-    import UserIcon from '@/Icons/User'
+    import ChatIcon from '@/Shared/Icons/Chat'
+    import ClockIcon from '@/Shared/Icons/Clock'
+    import HeartIcon from '@/Shared/Icons/Heart'
+    import TemplateIcon from '@/Shared/Icons/Template'
+    import UserIcon from '@/Shared/Icons/User'
 
     export default {
         props: {

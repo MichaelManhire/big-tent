@@ -39,10 +39,10 @@
 </template>
 
 <script>
-    import Avatar from '@/Components/Avatar'
-    import Post from '@/Components/Post'
-    import PostList from '@/Components/PostList'
-    import PrimaryButton from '@/Components/PrimaryButton'
+    import Avatar from '@/Shared/Avatar'
+    import Post from '@/Shared/Post'
+    import PostList from '@/Shared/PostList'
+    import PrimaryButton from '@/Shared/PrimaryButton'
 
     export default {
         props: {

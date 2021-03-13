@@ -18,8 +18,8 @@
 </template>
 
 <script>
-    import Group from '@/Components/Group'
-    import Pagination from '@/Components/Pagination'
+    import Group from '@/Shared/Group'
+    import Pagination from '@/Shared/Pagination'
 
     export default {
         props: {

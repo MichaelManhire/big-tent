@@ -30,9 +30,9 @@
 </template>
 
 <script>
-    import Avatar from '@/Components/Avatar'
-    import Byline from '@/Components/Byline'
-    import MediaObject from '@/Components/MediaObject'
+    import Avatar from '@/Shared/Avatar'
+    import Byline from '@/Shared/Byline'
+    import MediaObject from '@/Shared/MediaObject'
 
     export default {
         props: {

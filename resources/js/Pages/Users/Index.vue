@@ -18,8 +18,8 @@
 </template>
 
 <script>
-    import Pagination from '@/Components/Pagination'
-    import User from '@/Components/User'
+    import Pagination from '@/Shared/Pagination'
+    import User from '@/Shared/User'
 
     export default {
         props: {

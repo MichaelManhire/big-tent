@@ -28,8 +28,8 @@
 </template>
 
 <script>
-    import Post from '@/Components/Post'
-    import PostList from '@/Components/PostList'
+    import Post from '@/Shared/Post'
+    import PostList from '@/Shared/PostList'
 
     export default {
         props: {

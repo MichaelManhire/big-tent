@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import PlusIcon from '@/Icons/Plus'
+    import PlusIcon from '@/Shared/Icons/Plus'
 
     export default {
         props: {
