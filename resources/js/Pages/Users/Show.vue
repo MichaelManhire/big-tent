@@ -21,13 +21,22 @@
             </section>
 
             <section class="lg:col-start-3 lg:col-span-1">
-                <!-- Sidebar Content -->
+                <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
+                    <h2 class="text-lg font-medium">Groups</h2>
+                    <ul class="flex flex-wrap" v-if="user.groups.length">
+                        <li class="mt-2 mr-2" v-for="group in user.groups" :key="group.id">
+                            <avatar :src="group.image" :width="48" :height="48" :name="group.name" :href="route('groups.show', group)" />
+                        </li>
+                    </ul>
+                    <p class="mt-3" v-else>This member hasn't joined any groups.</p>
+                </div>
             </section>
         </div>
     </div>
 </template>
 
 <script>
+    import Avatar from '@/Shared/Avatar'
     import Post from '@/Shared/Post'
     import PostList from '@/Shared/PostList'
 
@@ -39,6 +48,7 @@
         },
 
         components: {
+            Avatar,
             Post,
             PostList,
         },

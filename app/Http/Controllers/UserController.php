@@ -63,6 +63,17 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Show', [
             'user' => [
+                'groups' => $user->groups
+                    ->shuffle()
+                    ->take(48)
+                    ->map(function ($group) {
+                        return [
+                            'id' => $group->id,
+                            'image' => $group->profile_photo_url,
+                            'name' => $group->name,
+                            'slug' => $group->slug,
+                        ];
+                    }),
                 'image' => $user->profile_photo_url,
                 'name' => $user->name,
                 'posts' => $user->posts()
