@@ -3,7 +3,7 @@
         <div class="px-4 py-5 sm:p-6">
             <media-object>
                 <template #media>
-                    <inertia-link v-if="isLinked" :href="post.show_url">
+                    <inertia-link v-if="isLinked" :href="route('posts.show', post)">
                         <img class="rounded-md" :src="post.image" alt="" width="56" height="56" loading="lazy">
                     </inertia-link>
                     <div v-else>
@@ -12,7 +12,7 @@
                 </template>
 
                 <template #content>
-                    <inertia-link v-if="isLinked" :href="post.show_url">
+                    <inertia-link v-if="isLinked" :href="route('posts.show', post)">
                         <component class="mb-1 text-lg font-bold" :is="heading">{{ post.name }}</component>
                         <p>{{ post.body }}</p>
                     </inertia-link>

@@ -27,7 +27,7 @@ class GroupController extends Controller
                         'image' => $group->profile_photo_url,
                         'members_count' => $group->members_count,
                         'name' => $group->name,
-                        'show_url' => URL::route('groups.show', $group),
+                        'slug' => $group->slug,
                     ];
                 })
                 ->simplePaginate(),
@@ -74,7 +74,7 @@ class GroupController extends Controller
                             'id' => $member->id,
                             'image' => $member->profile_photo_url,
                             'name' => $member->name,
-                            'show_url' => URL::route('users.show', $member),
+                            'slug' => $member->slug,
                         ];
                     }),
                 'name' => $group->name,
@@ -83,8 +83,7 @@ class GroupController extends Controller
                     ->get()
                     ->map(function ($post) {
                         return [
-                            'author' => $post->author->name,
-                            'author_show_url' => URL::route('users.show', $post->author),
+                            'author' => $post->author->only(['name', 'slug']),
                             'body' => $post->body,
                             'comments_count' => $post->comments_count,
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
@@ -92,7 +91,7 @@ class GroupController extends Controller
                             'id' => $post->id,
                             'image' => $post->profile_photo_url,
                             'name' => $post->name,
-                            'show_url' => URL::route('posts.show', $post),
+                            'slug' => $post->slug,
                         ];
                     })
                     ->simplePaginate(),

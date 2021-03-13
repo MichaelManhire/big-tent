@@ -1,11 +1,11 @@
 <template>
     <article class="flex shadow-sm rounded-md border border-gray-200">
         <div class="flex-shrink-0 flex items-center justify-center w-24 bg-white rounded-l-md">
-            <img class="rounded-l-md" :src="group.image" alt="" width="96" height="96" loading="lazy">
+            <img :src="group.image" class="rounded-l-md" alt="" width="96" height="96" loading="lazy">
         </div>
         <div class="flex-1 flex justify-between bg-white rounded-r-md">
             <div class="flex-1 px-4 py-2 text-sm">
-                <inertia-link class="text-gray-900 font-medium hover:text-gray-600" :href="group.show_url">
+                <inertia-link :href="route('groups.show', group)" class="text-gray-900 font-medium hover:text-gray-600">
                     {{ group.name }}
                 </inertia-link>
                 <p class="mt-1 text-gray-500">{{ group.members_count }} {{ members }}</p>

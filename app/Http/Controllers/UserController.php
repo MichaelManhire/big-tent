@@ -25,7 +25,7 @@ class UserController extends Controller
                         'id' => $user->id,
                         'image' => $user->profile_photo_url,
                         'name' => $user->name,
-                        'show_url' => URL::route('users.show', $user),
+                        'slug' => $user->slug,
                     ];
                 })
                 ->simplePaginate(),
@@ -70,8 +70,6 @@ class UserController extends Controller
                     ->get()
                     ->map(function ($post) {
                         return [
-                            'author' => $post->author->name,
-                            'author_show_url' => URL::route('users.show', $post->author),
                             'body' => $post->body,
                             'comments_count' => $post->comments_count,
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
@@ -79,10 +77,9 @@ class UserController extends Controller
                             'hearts_count' => $post->hearts_count,
                             'id' => $post->id,
                             'image' => $post->profile_photo_url,
-                            'group' => optional($post->group)->name,
-                            'group_show_url' => $post->group ? URL::route('groups.show', $post->group) : null,
+                            'group' => optional($post->group)->only(['name', 'slug']),
                             'name' => $post->name,
-                            'show_url' => URL::route('posts.show', $post),
+                            'slug' => $post->slug,
                         ];
                     })
                     ->simplePaginate(),

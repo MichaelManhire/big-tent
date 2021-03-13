@@ -24,8 +24,7 @@ class PostController extends Controller
                 ->get()
                 ->map(function ($post) {
                     return [
-                        'author' => $post->author->name,
-                        'author_show_url' => URL::route('users.show', $post->author),
+                        'author' => $post->author->only(['name', 'slug']),
                         'body' => $post->body,
                         'comments_count' => $post->comments_count,
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
@@ -33,10 +32,9 @@ class PostController extends Controller
                         'hearts_count' => $post->hearts_count,
                         'id' => $post->id,
                         'image' => $post->profile_photo_url,
-                        'group' => optional($post->group)->name,
-                        'group_show_url' => $post->group ? URL::route('groups.show', $post->group) : null,
+                        'group' => optional($post->group)->only(['name', 'slug']),
                         'name' => $post->name,
-                        'show_url' => URL::route('posts.show', $post),
+                        'slug' => $post->slug,
                     ];
                 })
                 ->simplePaginate(),
@@ -74,16 +72,14 @@ class PostController extends Controller
     {
         return Inertia::render('Posts/Show', [
             'post' => [
-                'author' => $post->author->name,
-                'author_show_url' => URL::route('users.show', $post->author),
+                'author' => $post->author->only(['name', 'slug']),
                 'body' => $post->body,
                 'comments' => $post->comments()
                     ->withCount(['hearts'])
                     ->get()
                     ->map(function ($comment) {
                         return [
-                            'author' => $comment->author->name,
-                            'author_show_url' => URL::route('users.show', $comment->author),
+                            'author' => $comment->author->only(['name', 'slug']),
                             'body' => $comment->body,
                             'comments_count' => $comment->replies->count(),
                             'created_at' => Carbon::parse($comment->created_at)->diffForHumans(),
@@ -96,8 +92,7 @@ class PostController extends Controller
                     ->simplePaginate(),
                 'comments_count' => $post->comments->count(),
                 'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
-                'group' => optional($post->group)->name,
-                'group_show_url' => $post->group ? URL::route('groups.show', $post->group) : null,
+                'group' => optional($post->group)->only(['name', 'slug']),
                 'hearts_count' => $post->hearts->count(),
                 'id' => $post->id,
                 'image' => $post->profile_photo_url,
@@ -150,8 +145,7 @@ class PostController extends Controller
     {
         return $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
             return [
-                'author' => $reply->author->name,
-                'author_show_url' => URL::route('users.show', $reply->author),
+                'author' => $reply->author->only(['name', 'slug']),
                 'body' => $reply->body,
                 'comments_count' => $reply->replies->count(),
                 'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),
