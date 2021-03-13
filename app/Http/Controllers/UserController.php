@@ -22,7 +22,6 @@ class UserController extends Controller
                 ->get()
                 ->map(function ($user) {
                     return [
-                        'id' => $user->id,
                         'image' => $user->profile_photo_url,
                         'name' => $user->name,
                         'slug' => $user->slug,
@@ -68,7 +67,6 @@ class UserController extends Controller
                     ->take(48)
                     ->map(function ($group) {
                         return [
-                            'id' => $group->id,
                             'image' => $group->profile_photo_url,
                             'name' => $group->name,
                             'slug' => $group->slug,
@@ -86,7 +84,6 @@ class UserController extends Controller
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                             'group' => optional($post->group)->name,
                             'hearts_count' => $post->hearts_count,
-                            'id' => $post->id,
                             'image' => $post->profile_photo_url,
                             'group' => optional($post->group)->only(['name', 'slug']),
                             'name' => $post->name,

@@ -5,7 +5,7 @@
 
             <div v-if="groups.from">
                 <ul class="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <li class="col-span-1" v-for="(group, index) in groups.data" :key="group.id">
+                    <li class="col-span-1" v-for="group in groups.data" :key="group.slug">
                         <group :group="group" />
                     </li>
                 </ul>

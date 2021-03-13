@@ -7,7 +7,7 @@
             <h2 class="text-lg font-bold">Comments</h2>
             <div v-if="post.comments.from" class="mt-2">
                 <ol>
-                    <li :class="{ 'mt-6': index > 0 }" v-for="(comment, index) in post.comments.data" :key="comment.id">
+                    <li v-for="(comment, index) in post.comments.data" :key="comment.id" :class="{ 'mt-6': index > 0 }">
                         <comment :comment="comment" />
                     </li>
                 </ol>

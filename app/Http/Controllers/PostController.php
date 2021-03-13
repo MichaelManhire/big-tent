@@ -30,7 +30,6 @@ class PostController extends Controller
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                         'group' => optional($post->group)->name,
                         'hearts_count' => $post->hearts_count,
-                        'id' => $post->id,
                         'image' => $post->profile_photo_url,
                         'group' => optional($post->group)->only(['name', 'slug']),
                         'name' => $post->name,
@@ -94,7 +93,6 @@ class PostController extends Controller
                 'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                 'group' => optional($post->group)->only(['name', 'slug']),
                 'hearts_count' => $post->hearts->count(),
-                'id' => $post->id,
                 'image' => $post->profile_photo_url,
                 'name' => $post->name,
             ]

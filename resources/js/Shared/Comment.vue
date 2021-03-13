@@ -4,7 +4,7 @@
             <div class="px-4 py-5 sm:p-6">
                 <media-object>
                     <template #media>
-                        <avatar :src="comment.image" :name="comment.author" :href="comment.author_show_url" />
+                        <avatar :src="comment.image" :name="comment.author.name" :href="route('users.show', comment.author)" />
                     </template>
                     <template #content>
                         <p>{{ comment.body }}</p>

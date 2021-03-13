@@ -23,7 +23,6 @@ class GroupController extends Controller
                 ->get()
                 ->map(function ($group) {
                     return [
-                        'id' => $group->id,
                         'image' => $group->profile_photo_url,
                         'members_count' => $group->members_count,
                         'name' => $group->name,
@@ -71,7 +70,6 @@ class GroupController extends Controller
                     ->take(48)
                     ->map(function ($member) {
                         return [
-                            'id' => $member->id,
                             'image' => $member->profile_photo_url,
                             'name' => $member->name,
                             'slug' => $member->slug,
@@ -88,7 +86,6 @@ class GroupController extends Controller
                             'comments_count' => $post->comments_count,
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
                             'hearts_count' => $post->hearts_count,
-                            'id' => $post->id,
                             'image' => $post->profile_photo_url,
                             'name' => $post->name,
                             'slug' => $post->slug,

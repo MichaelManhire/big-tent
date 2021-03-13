@@ -1,6 +1,6 @@
 <template>
     <ol>
-        <li :class="{ 'mt-6': index > 0 }" v-for="(post, index) in posts.data" :key="post.id">
+        <li v-for="(post, index) in posts.data" :key="post.slug" :class="{ 'mt-6': index > 0 }">
             <post :post="post" :heading="heading" />
         </li>
     </ol>

@@ -1,5 +1,5 @@
 <template>
-    <inertia-link :href="href">
+    <inertia-link :href="href" :title="name">
         <img class="rounded-md" :src="src" alt="" :width="width" :height="height" loading="lazy">
         <span class="sr-only">{{ name }}</span>
     </inertia-link>

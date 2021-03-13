@@ -24,7 +24,7 @@
                 <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
                     <h2 class="text-lg font-medium">Groups</h2>
                     <ul class="flex flex-wrap" v-if="user.groups.length">
-                        <li class="mt-2 mr-2" v-for="group in user.groups" :key="group.id">
+                        <li class="mt-2 mr-2" v-for="group in user.groups" :key="group.slug">
                             <avatar :src="group.image" :width="48" :height="48" :name="group.name" :href="route('groups.show', group)" />
                         </li>
                     </ul>
