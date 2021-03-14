@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/Index', [
-            'users' => User::inRandomOrder()
+            'members' => User::inRandomOrder()
                 ->get()
                 ->map(function ($user) {
                     return [
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return Inertia::render('Users/Show', [
-            'user' => [
+            'member' => [
                 'groups' => $user->groups
                     ->shuffle()
                     ->take(48)

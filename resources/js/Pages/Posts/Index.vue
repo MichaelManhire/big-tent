@@ -1,14 +1,10 @@
 <template>
-    <div class="container">
-        <section>
-            <h1 class="sr-only">Posts</h1>
+    <h1 class="sr-only">Posts</h1>
 
-            <div v-if="posts.from">
-                <post-list :posts="posts" />
-            </div>
-            <p v-else>There are no posts here.</p>
-        </section>
+    <div v-if="posts.from">
+        <post-list :posts="posts" />
     </div>
+    <p v-else>There are no posts here.</p>
 </template>
 
 <script>

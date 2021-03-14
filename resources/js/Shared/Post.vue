@@ -13,11 +13,11 @@
 
                 <template #content>
                     <inertia-link v-if="isLinked" :href="route('posts.show', post)">
-                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.name }}</component>
+                        <component :is="heading" class="mb-1 text-lg font-bold">{{ post.name }}</component>
                         <p>{{ post.body }}</p>
                     </inertia-link>
                     <div v-else>
-                        <component class="mb-1 text-lg font-bold" :is="heading">{{ post.name }}</component>
+                        <component :is="heading" class="mb-1 text-lg font-bold">{{ post.name }}</component>
                         <p>{{ post.body }}</p>
                     </div>
                 </template>

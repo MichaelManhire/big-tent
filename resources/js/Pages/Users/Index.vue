@@ -1,20 +1,16 @@
 <template>
-    <div class="container">
-        <section>
-            <h1 class="sr-only">Members</h1>
+    <h1 class="sr-only">Members</h1>
 
-            <div v-if="users.from">
-                <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <li class="col-span-1" v-for="user in users.data" :key="user.slug">
-                        <user :user="user" />
-                    </li>
-                </ul>
+    <div v-if="members.from">
+        <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <li class="col-span-1" v-for="member in members.data" :key="member.slug">
+                <user :user="member" />
+            </li>
+        </ul>
 
-                <pagination :pagination="users" />
-            </div>
-            <p v-else>There are no members here.</p>
-        </section>
+        <pagination :pagination="members" />
     </div>
+    <p v-else>There are no members here.</p>
 </template>
 
 <script>
@@ -23,7 +19,7 @@
 
     export default {
         props: {
-            users: {
+            members: {
                 type: Object,
             },
         },
