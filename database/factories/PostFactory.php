@@ -28,6 +28,8 @@ class PostFactory extends Factory
             'user_id' => User::all()->random()->id,
             'name' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

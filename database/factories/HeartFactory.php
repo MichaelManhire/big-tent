@@ -31,6 +31,8 @@ class HeartFactory extends Factory
             'user_id' => User::all()->random()->id,
             'heartable_id' => $heartableId,
             'heartable_type' => $heartableType,
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 

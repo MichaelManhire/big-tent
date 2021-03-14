@@ -28,6 +28,8 @@ class CommentFactory extends Factory
             'commentable_id' => Post::all()->random()->id,
             'commentable_type' => 'App\Models\Post',
             'body' => $this->faker->paragraph(),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 

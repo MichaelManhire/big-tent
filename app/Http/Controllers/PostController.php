@@ -19,7 +19,8 @@ class PostController extends Controller
     public function index()
     {
         return Inertia::render('Posts/Index', [
-            'posts' => Post::with(['author', 'group'])
+            'posts' => Post::latest()
+                ->with(['author', 'group'])
                 ->withCount(['comments', 'hearts'])
                 ->get()
                 ->map(function ($post) {

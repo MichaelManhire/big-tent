@@ -25,6 +25,8 @@ class GroupFactory extends Factory
         return [
             'user_id' => User::all()->random()->id,
             'name' => $this->faker->sentence(),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
