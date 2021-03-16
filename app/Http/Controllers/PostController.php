@@ -79,7 +79,11 @@ class PostController extends Controller
                     ->get()
                     ->map(function ($comment) {
                         return [
-                            'author' => $comment->author->only(['name', 'slug']),
+                            'author' => [
+                                'name' => $comment->author->name,
+                                'slug' => $comment->author->slug,
+                                'online' => $comment->author->isOnline(),
+                            ],
                             'body' => $comment->body,
                             'comments_count' => $comment->replies->count(),
                             'created_at' => Carbon::parse($comment->created_at)->diffForHumans(),
@@ -144,7 +148,11 @@ class PostController extends Controller
     {
         return $comment->replies()->withCount(['hearts'])->get()->map(function ($reply) {
             return [
-                'author' => $reply->author->only(['name', 'slug']),
+                'author' => [
+                    'name' => $reply->author->name,
+                    'slug' => $reply->author->slug,
+                    'online' => $reply->author->isOnline(),
+                ],
                 'body' => $reply->body,
                 'comments_count' => $reply->replies->count(),
                 'created_at' => Carbon::parse($reply->created_at)->diffForHumans(),

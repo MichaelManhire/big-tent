@@ -24,6 +24,7 @@ class UserController extends Controller
                     return [
                         'image' => $user->profile_photo_url,
                         'name' => $user->name,
+                        'online' => $user->isOnline(),
                         'slug' => $user->slug,
                     ];
                 })
@@ -74,6 +75,7 @@ class UserController extends Controller
                     }),
                 'image' => $user->profile_photo_url,
                 'name' => $user->name,
+                'online' => $user->isOnline(),
                 'posts' => $user->posts()
                     ->withCount(['comments', 'hearts'])
                     ->get()

@@ -71,6 +71,7 @@ class GroupController extends Controller
                     ->map(function ($member) {
                         return [
                             'image' => $member->profile_photo_url,
+                            'online' => $member->isOnline(),
                             'name' => $member->name,
                             'slug' => $member->slug,
                         ];

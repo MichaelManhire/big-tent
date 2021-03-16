@@ -1,13 +1,23 @@
 <template>
-    <inertia-link :href="href" :title="name">
-        <img class="rounded-md" :src="src" alt="" :width="width" :height="height" loading="lazy">
-        <span class="sr-only">{{ name }}</span>
-    </inertia-link>
+    <component :is="element" :href="href" :title="name">
+        <figure class="inline-block relative">
+            <rounded-image :src="src" :width="width" :height="height" />
+            <figcaption class="sr-only">{{ name }}</figcaption>
+            <online-indicator :online="online" />
+        </figure>
+    </component>
 </template>
 
 <script>
+    import OnlineIndicator from '@/Shared/OnlineIndicator'
+    import RoundedImage from '@/Shared/RoundedImage'
+
     export default {
         props: {
+            element: {
+                type: String,
+                default: 'inertia-link',
+            },
             height: {
                 type: Number,
                 default: 56,
@@ -18,6 +28,10 @@
             name: {
                 type: String,
             },
+            online: {
+                type: Boolean,
+                default: false,
+            },
             src: {
                 type: String,
             },
@@ -25,6 +39,11 @@
                 type: Number,
                 default: 56,
             },
+        },
+
+        components: {
+            OnlineIndicator,
+            RoundedImage,
         },
     }
 </script>

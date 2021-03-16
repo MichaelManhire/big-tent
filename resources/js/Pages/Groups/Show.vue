@@ -2,7 +2,7 @@
     <section class="md:flex md:items-center md:justify-between md:space-x-5">
         <div class="flex items-center space-x-5">
             <div class="flex-shrink-0">
-                <img class="rounded-md" :src="group.image" alt="" width="64" height="64" loading="lazy">
+                <rounded-image :src="group.image" element="div" width="64" height="64" />
             </div>
             <div>
                 <h1 class="text-2xl font-bold">{{ group.name }}</h1>
@@ -27,7 +27,7 @@
                 <h2 class="text-lg font-medium">Members</h2>
                 <ul class="flex flex-wrap" v-if="group.members.length">
                     <li class="mt-2 mr-2" v-for="member in group.members" :key="member.slug">
-                        <avatar :src="member.image" :width="48" :height="48" :name="member.name" :href="route('users.show', member)" />
+                        <avatar :src="member.image" :name="member.name" :href="route('users.show', member)" :online="member.online" />
                     </li>
                 </ul>
                 <p class="mt-3" v-else>This group doesn't have any members in it.</p>
@@ -41,6 +41,7 @@
     import Post from '@/Shared/Post'
     import PostList from '@/Shared/PostList'
     import PrimaryButton from '@/Shared/PrimaryButton'
+    import RoundedImage from '@/Shared/RoundedImage'
 
     export default {
         props: {
@@ -54,6 +55,7 @@
             Post,
             PostList,
             PrimaryButton,
+            RoundedImage,
         },
     }
 </script>

@@ -51,6 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_online_at' => 'datetime',
     ];
 
     /**
@@ -112,6 +113,18 @@ class User extends Authenticatable
     public function hearts()
     {
         return $this->hasMany(Heart::class);
+    }
+
+    /**
+     * Get whether the user has been online in the last fifteen minutes.
+     */
+    public function isOnline()
+    {
+        if ($this->last_online_at->diffInMinutes(now()) > 15) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

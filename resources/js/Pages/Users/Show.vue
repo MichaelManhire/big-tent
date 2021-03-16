@@ -2,7 +2,7 @@
     <section class="md:flex md:items-center md:justify-between md:space-x-5">
         <div class="flex items-center space-x-5">
             <div class="flex-shrink-0">
-                <img class="rounded-md" :src="member.image" alt="" width="64" height="64" loading="lazy">
+                <avatar :src="member.image" :name="member.name" :online="member.online" element="div" width="64" height="64" />
             </div>
             <div>
                 <h1 class="text-2xl font-bold">{{ member.name }}</h1>
@@ -23,9 +23,11 @@
             <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
                 <h2 class="text-lg font-medium">Groups</h2>
                 <ul class="flex flex-wrap" v-if="member.groups.length">
+                    <!--
                     <li class="mt-2 mr-2" v-for="group in member.groups" :key="group.slug">
                         <avatar :src="group.image" :width="48" :height="48" :name="group.name" :href="route('groups.show', group)" />
                     </li>
+                    -->
                 </ul>
                 <p class="mt-3" v-else>This member hasn't joined any groups.</p>
             </div>

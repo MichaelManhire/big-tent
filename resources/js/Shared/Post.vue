@@ -4,10 +4,10 @@
             <media-object>
                 <template #media>
                     <inertia-link v-if="isLinked" :href="route('posts.show', post)">
-                        <img class="rounded-md" :src="post.image" alt="" width="56" height="56" loading="lazy">
+                        <rounded-image :src="post.image" />
                     </inertia-link>
                     <div v-else>
-                        <img class="rounded-md" :src="post.image" alt="" width="56" height="56" loading="lazy">
+                        <rounded-image :src="post.image" />
                     </div>
                 </template>
 
@@ -33,6 +33,7 @@
     import Avatar from '@/Shared/Avatar'
     import Byline from '@/Shared/Byline'
     import MediaObject from '@/Shared/MediaObject'
+    import RoundedImage from '@/Shared/RoundedImage'
 
     export default {
         props: {
@@ -53,6 +54,7 @@
             Avatar,
             Byline,
             MediaObject,
+            RoundedImage,
         },
     }
 </script>
