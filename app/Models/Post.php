@@ -61,11 +61,11 @@ class Post extends Model
     }
 
     /**
-     * Get the group that contains the post.
+     * Get the topic that contains the post.
      */
-    public function group()
+    public function topic()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Topic::class);
     }
 
     /**

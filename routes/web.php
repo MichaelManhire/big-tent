@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,8 +31,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
-Route::get('/groups/{group}', [GroupController::class, 'show'])->name('groups.show');
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/members', [UserController::class, 'index'])->name('users.index');

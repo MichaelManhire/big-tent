@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -63,14 +62,14 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Show', [
             'member' => [
-                'groups' => $user->groups
+                'topics' => $user->topics
                     ->shuffle()
                     ->take(48)
-                    ->map(function ($group) {
+                    ->map(function ($topic) {
                         return [
-                            'image' => $group->profile_photo_url,
-                            'name' => $group->name,
-                            'slug' => $group->slug,
+                            'image' => $topic->profile_photo_url,
+                            'name' => $topic->name,
+                            'slug' => $topic->slug,
                         ];
                     }),
                 'image' => $user->profile_photo_url,
@@ -84,10 +83,10 @@ class UserController extends Controller
                             'body' => $post->body,
                             'comments_count' => $post->comments_count,
                             'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
-                            'group' => optional($post->group)->name,
+                            'topic' => optional($post->topic)->name,
                             'hearts_count' => $post->hearts_count,
                             'image' => $post->profile_photo_url,
-                            'group' => optional($post->group)->only(['name', 'slug']),
+                            'topic' => optional($post->topic)->only(['name', 'slug']),
                             'name' => $post->name,
                             'slug' => $post->slug,
                         ];

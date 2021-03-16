@@ -34,13 +34,13 @@
             <span class="sr-only">{{ hearts }}</span>
         </span>
     </p>
-    <p v-if="post.group" class="mt-3 text-sm text-gray-500">
+    <p v-if="post.topic" class="mt-3 text-sm text-gray-500">
         <span class="sr-only">Posted in</span>
-        <inertia-link :href="route('groups.show', post.group)" class="flex">
+        <inertia-link :href="route('topics.show', post.topic)" class="flex">
             <span>
-                <template-icon />
+                <hashtag-icon />
             </span>
-            <span class="inline-block ml-1">{{ post.group.name }}</span>
+            <span class="inline-block ml-1">{{ post.topic.name }}</span>
         </inertia-link>
     </p>
 </template>
@@ -48,8 +48,8 @@
 <script>
     import ChatIcon from '@/Shared/Icons/Chat'
     import ClockIcon from '@/Shared/Icons/Clock'
+    import HashtagIcon from '@/Shared/Icons/Hashtag'
     import HeartIcon from '@/Shared/Icons/Heart'
-    import TemplateIcon from '@/Shared/Icons/Template'
     import UserIcon from '@/Shared/Icons/User'
 
     export default {
@@ -72,8 +72,8 @@
         components: {
             ChatIcon,
             ClockIcon,
+            HashtagIcon,
             HeartIcon,
-            TemplateIcon,
             UserIcon,
         },
     }

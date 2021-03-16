@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -20,7 +19,7 @@ class PostController extends Controller
     {
         return Inertia::render('Posts/Index', [
             'posts' => Post::latest()
-                ->with(['author', 'group'])
+                ->with(['author', 'topic'])
                 ->withCount(['comments', 'hearts'])
                 ->get()
                 ->map(function ($post) {
@@ -29,10 +28,10 @@ class PostController extends Controller
                         'body' => $post->body,
                         'comments_count' => $post->comments_count,
                         'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
-                        'group' => optional($post->group)->name,
+                        'topic' => optional($post->topic)->name,
                         'hearts_count' => $post->hearts_count,
                         'image' => $post->profile_photo_url,
-                        'group' => optional($post->group)->only(['name', 'slug']),
+                        'topic' => optional($post->topic)->only(['name', 'slug']),
                         'name' => $post->name,
                         'slug' => $post->slug,
                     ];
@@ -96,7 +95,7 @@ class PostController extends Controller
                     ->simplePaginate(),
                 'comments_count' => $post->comments->count(),
                 'created_at' => Carbon::parse($post->created_at)->diffForHumans(),
-                'group' => optional($post->group)->only(['name', 'slug']),
+                'topic' => optional($post->topic)->only(['name', 'slug']),
                 'hearts_count' => $post->hearts->count(),
                 'image' => $post->profile_photo_url,
                 'name' => $post->name,

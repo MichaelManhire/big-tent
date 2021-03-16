@@ -21,15 +21,15 @@
 
         <section class="lg:col-start-3 lg:col-span-1">
             <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
-                <h2 class="text-lg font-medium">Groups</h2>
-                <ul class="flex flex-wrap" v-if="member.groups.length">
+                <h2 class="text-lg font-medium">Topics</h2>
+                <ul class="flex flex-wrap" v-if="member.topics.length">
                     <!--
-                    <li class="mt-2 mr-2" v-for="group in member.groups" :key="group.slug">
-                        <avatar :src="group.image" :width="48" :height="48" :name="group.name" :href="route('groups.show', group)" />
+                    <li class="mt-2 mr-2" v-for="topic in member.topics" :key="topic.slug">
+                        <avatar :src="topic.image" :width="48" :height="48" :name="topic.name" :href="route('topics.show', topic)" />
                     </li>
                     -->
                 </ul>
-                <p class="mt-3" v-else>This member hasn't joined any groups.</p>
+                <p class="mt-3" v-else>This member isn't interested in any topics.</p>
             </div>
         </section>
     </div>

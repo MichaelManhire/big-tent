@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Group;
+use App\Models\Topic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
-class GroupController extends Controller
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +16,16 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Groups/Index', [
-            'groups' => Group::inRandomOrder()
+        return Inertia::render('Topics/Index', [
+            'topics' => Topic::inRandomOrder()
                 ->withCount(['members'])
                 ->get()
-                ->map(function ($group) {
+                ->map(function ($topic) {
                     return [
-                        'image' => $group->profile_photo_url,
-                        'members_count' => $group->members_count,
-                        'name' => $group->name,
-                        'slug' => $group->slug,
+                        'image' => $topic->profile_photo_url,
+                        'members_count' => $topic->members_count,
+                        'name' => $topic->name,
+                        'slug' => $topic->slug,
                     ];
                 })
                 ->simplePaginate(),
@@ -57,15 +56,15 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show(Topic $topic)
     {
-        return Inertia::render('Groups/Show', [
-            'group' => [
-                'image' => $group->profile_photo_url,
-                'members' => $group->members
+        return Inertia::render('Topics/Show', [
+            'topic' => [
+                'image' => $topic->profile_photo_url,
+                'members' => $topic->members
                     ->shuffle()
                     ->take(48)
                     ->map(function ($member) {
@@ -76,8 +75,8 @@ class GroupController extends Controller
                             'slug' => $member->slug,
                         ];
                     }),
-                'name' => $group->name,
-                'posts' => $group->posts()
+                'name' => $topic->name,
+                'posts' => $topic->posts()
                     ->withCount(['comments', 'hearts'])
                     ->get()
                     ->map(function ($post) {
@@ -100,10 +99,10 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group) {
+    public function edit(Topic $topic) {
         //
     }
 
@@ -111,10 +110,10 @@ class GroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, Topic $topic)
     {
         //
     }
@@ -122,10 +121,10 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy(Topic $topic)
     {
         //
     }

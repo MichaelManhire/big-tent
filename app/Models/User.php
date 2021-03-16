@@ -72,11 +72,11 @@ class User extends Authenticatable
     }
 
     /**
-     * The groups that the user has created.
+     * The topics that the user has created.
      */
-    public function createdGroups()
+    public function createdTopics()
     {
-        return $this->hasMany(Group::class);
+        return $this->hasMany(Topic::class);
     }
 
     /**
@@ -100,11 +100,11 @@ class User extends Authenticatable
     }
 
     /**
-     * The groups that the user belongs to.
+     * The topics that the user belongs to.
      */
-    public function groups()
+    public function topics()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Topic::class);
     }
 
     /**

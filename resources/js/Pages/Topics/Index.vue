@@ -1,32 +1,32 @@
 <template>
-    <h1 class="sr-only">Groups</h1>
+    <h1 class="sr-only">Topics</h1>
 
-    <div v-if="groups.from">
+    <div v-if="topics.from">
         <ul class="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <li class="col-span-1" v-for="group in groups.data" :key="group.slug">
-                <group :group="group" />
+            <li class="col-span-1" v-for="topic in topics.data" :key="topic.slug">
+                <topic :topic="topic" />
             </li>
         </ul>
 
-        <pagination :pagination="groups" />
+        <pagination :pagination="topics" />
     </div>
-    <p v-else>There are no groups here.</p>
+    <p v-else>There are no topics here.</p>
 </template>
 
 <script>
-    import Group from '@/Shared/Group'
     import Pagination from '@/Shared/Pagination'
+    import Topic from '@/Shared/Topic'
 
     export default {
         props: {
-            groups: {
+            topics: {
                 type: Object,
             },
         },
 
         components: {
-            Group,
             Pagination,
+            Topic,
         },
     }
 </script>

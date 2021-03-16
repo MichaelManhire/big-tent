@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Group;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class GroupFactory extends Factory
+class TopicFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Group::class;
+    protected $model = Topic::class;
 
     /**
      * Define the model's default state.
@@ -24,7 +24,7 @@ class GroupFactory extends Factory
     {
         return [
             'user_id' => User::all()->random()->id,
-            'name' => $this->faker->sentence(),
+            'name' => ucwords($this->faker->word()),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

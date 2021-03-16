@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Group;
+use App\Models\Topic;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,7 +24,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'group_id' => $this->faker->boolean() ? Group::all()->random()->id : null,
+            'topic_id' => $this->faker->boolean() ? Topic::all()->random()->id : null,
             'user_id' => User::all()->random()->id,
             'name' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),

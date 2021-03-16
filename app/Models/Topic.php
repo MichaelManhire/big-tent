@@ -8,14 +8,14 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Group extends Model
+class Topic extends Model
 {
     use HasFactory;
     use HasProfilePhoto;
     use HasSlug;
 
     /**
-     * Get the user that created the group.
+     * Get the user that created the topic.
      */
     public function creator()
     {
@@ -43,15 +43,15 @@ class Group extends Model
     }
 
     /**
-     * The users that belong to the group.
+     * The users that belong to the topic.
      */
     public function members()
     {
-        return $this->belongsToMany(User::class, 'group_user');
+        return $this->belongsToMany(User::class, 'topic_user');
     }
 
     /**
-     * Get the posts for the group.
+     * Get the posts for the topic.
      */
     public function posts()
     {
